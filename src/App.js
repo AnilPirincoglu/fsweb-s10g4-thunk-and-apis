@@ -3,12 +3,14 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import Item from "./components/Item";
 import FavItem from "./components/FavItem";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAnother } from "./actions";
+import { addFav, fetchAnother } from "./actions";
 
 export default function App() {
   const { favs, current, loading, error } = useSelector((state) => state);
   const dispatch = useDispatch();
-  function addToFavs() {}
+  function addToFavs() {
+    dispatch(addFav(current));
+  }
 
   const getActivity = () => {
     dispatch(fetchAnother());

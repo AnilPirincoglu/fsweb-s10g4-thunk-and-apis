@@ -25,10 +25,15 @@ function readFavsFromLocalStorage() {
 export function myReducer(state = initial, action) {
   switch (action.type) {
     case FAV_ADD:
+      if (!state.favs.includes(action.payload))
+        return { ...state, favs: [...state.favs, action.payload] };
       return state;
 
     case FAV_REMOVE:
-      return state;
+      return {
+        ...state,
+        favs: state.favs.filter((item) => item.key !== action.payload),
+      };
 
     case FETCH_SUCCESS:
       return { ...state, current: action.payload, loading: false, error: null };
