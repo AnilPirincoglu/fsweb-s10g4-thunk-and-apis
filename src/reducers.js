@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import {
   FAV_ADD,
   FAV_REMOVE,
@@ -26,6 +27,10 @@ export function myReducer(state = initial, action) {
   switch (action.type) {
     case FAV_ADD:
       if (!state.favs.includes(action.payload)) {
+        toast("Favorilere eklendi", {
+          type: "success",
+          autoClose: 2000,
+        });
         const newState = { ...state, favs: [...state.favs, action.payload] };
         writeFavsToLocalStorage(newState);
         return newState;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const GET_FAVS_FROM_LS = "GET_FAVS_FROM_LS";
 export const FAV_ADD = "FAV_ADD";
@@ -16,6 +17,10 @@ export const addFav = (info) => {
 };
 
 export const removeFav = (id) => {
+  toast("Favorilerden silindi", {
+    type: "warning",
+    autoClose: 2000,
+  });
   return { type: FAV_REMOVE, payload: id };
 };
 
